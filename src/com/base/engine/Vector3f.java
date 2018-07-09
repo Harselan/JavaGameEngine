@@ -29,7 +29,7 @@ public class Vector3f
 		float y_ = z * r.getX() - x * r.getZ();
 		float z_ = x * r.getY() - y * r.getX();
 		
-		return new Vector3f( x_,y_, z_ );
+		return new Vector3f( x_,y_, z_ ); 
 	}
 	
 	public Vector3f normalize()
