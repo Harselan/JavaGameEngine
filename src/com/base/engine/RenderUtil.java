@@ -29,4 +29,9 @@ public class RenderUtil
 		// Fixar så att färgerna inte blir allt för mörka
 		glEnable( GL_FRAMEBUFFER_SRGB );
 	}
+	
+	public static String getOpenGlVersion()
+	{
+		return glGetString( GL_VERSION );
+	}
 }
