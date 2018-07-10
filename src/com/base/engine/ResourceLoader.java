@@ -13,7 +13,7 @@ public class ResourceLoader
 		BufferedReader shaderReader = null;
 		
 		try 
-		{
+		{	
 			// Öppna upp filen
 			shaderReader = new BufferedReader(new FileReader("./res/shaders/" + fileName));
 		

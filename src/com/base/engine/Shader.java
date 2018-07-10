@@ -1,7 +1,7 @@
 package com.base.engine;
 
-import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL32.*;
+import static org.lwjgl.opengl.GL20.*;
 
 public class Shader 
 {
@@ -42,17 +42,20 @@ public class Shader
 	{
 		glLinkProgram( program );
 		
-		if( glGetShader( program, GL_LINK_STATUS ) == 0 )
+		if( glGetProgrami( program, GL_LINK_STATUS ) == 0 )
 		{
-			System.err.println( glGetShaderInfoLog( program, 1024 ) );
+			System.out.println(glGetProgrami( program, GL_LINK_STATUS ));
+			System.err.println( glGetProgramInfoLog( program, 1024 ) );
 			System.exit(1);
 		}
 		
 		glValidateProgram( program );
 		
-		if( glGetShader( program, GL_VALIDATE_STATUS ) == 0 )
+		System.out.println(glGetProgrami( program, GL_VALIDATE_STATUS ));
+		
+		if( glGetProgrami( program, GL_VALIDATE_STATUS ) == 0 )
 		{
-			System.err.println( glGetShaderInfoLog( program, 1024 ) );
+			System.err.println( glGetProgramInfoLog( program, 1024 ) );
 			System.exit(1);
 		}
 	}
@@ -70,12 +73,12 @@ public class Shader
 		glShaderSource( shader, text );
 		glCompileShader( shader );
 		
-		if( glGetShader( shader, GL_COMPILE_STATUS ) == 0 )
+		if( glGetShaderi( shader, GL_COMPILE_STATUS ) == 0 )
 		{
 			System.err.println( glGetShaderInfoLog( shader, 1024 ) );
 			System.exit(1);
 		}
 		
-		glAttachShader( shader, program );
+		glAttachShader( program, shader );
 	}
 }
