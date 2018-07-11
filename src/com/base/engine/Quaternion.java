@@ -34,7 +34,7 @@ public class Quaternion
 	
 	public Quaternion conjugate()
 	{
-		return new Quaternion( -x, -y, -z, -w );
+		return new Quaternion( -x, -y, -z, w );
 	}
 	
 	public Quaternion mul( Quaternion r )
