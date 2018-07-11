@@ -24,6 +24,8 @@ public class Game
 		shader.addFragmentShader( ResourceLoader.loadShader( "basicFragment.fs" ) );
 		
 		shader.compileShader();
+		
+		shader.addUniform("uniformFloat");
 	}
 	
 	public void input()
@@ -49,9 +51,13 @@ public class Game
 		}
 	}
 	
+	float temp = 0.0f;
+	
 	public void update()
 	{
+		temp += Time.getDelta();
 		
+		shader.setUniformf( "uniformFloat", (float)Math.abs( Math.sin(temp) ) );
 	}
 	
 	public void render()
