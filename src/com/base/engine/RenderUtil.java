@@ -11,6 +11,18 @@ public class RenderUtil
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	}
 	
+	public static void setTextures( boolean enabled )
+	{
+		if( enabled )
+		{
+			glEnable( GL_TEXTURE_2D );
+		}
+		else
+		{
+			glDisable( GL_TEXTURE_2D );
+		}
+	}
+	
 	public static void initGraphics()
 	{
 		// Sätter så att skärmen rensas till en svart färg
@@ -26,6 +38,8 @@ public class RenderUtil
 		
 		//TODO: Depth clamp for later
 		
+		// Fixar så att texturer används
+		glEnable( GL_TEXTURE_2D );
 		// Fixar så att färgerna inte blir allt för mörka
 		glEnable( GL_FRAMEBUFFER_SRGB );
 	}
