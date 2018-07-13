@@ -7,14 +7,14 @@ public class Game
 	private Mesh mesh;
 	private Shader shader;
 	private Transform transform;
-	private Texture texture;
+	private Material material;
 	private Camera camera;
 	
 	public Game()
 	{
 		mesh   = new Mesh(); //ResourceLoader.loadMesh( "box.obj" );
-		texture = ResourceLoader.loadTexture("test.png");
-		shader = new Shader();
+		material = new Material( ResourceLoader.loadTexture("test.png"), new Vector3f( 0, 1, 1 ) );
+		shader = new BasicShader();
 		camera = new Camera();
 		
 		Vertex[] vertices = new Vertex[] { 
@@ -37,13 +37,6 @@ public class Game
 		
 		transform.setProjection( 70f, Window.getWidth(), Window.getHeight(), 0.1f, 1000 );
 		transform.setCamera(camera);
-		
-		shader.addVertexShader( ResourceLoader.loadShader( "basicVertex.vs" ) );
-		shader.addFragmentShader( ResourceLoader.loadShader( "basicFragment.fs" ) );
-		
-		shader.compileShader();
-		
-		shader.addUniform("transform");
 	}
 	
 	public void input()
@@ -88,8 +81,7 @@ public class Game
 	{
 		RenderUtil.setClearColor( Transform.getCamera().getPos().div(2048f).abs() );
 		shader.bind();
-		shader.setUniform( "transform", transform.getProjectedTransformation() );
-		texture.bind();
+		shader.updateuniforms( transform.getTransformation(), transform.getProjectedTransformation() , material );
 		mesh.draw();
 	}
 }

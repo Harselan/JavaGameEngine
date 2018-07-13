@@ -19,8 +19,8 @@ public class Camera
 		this.forward 	= forward;
 		this.up 		= up;
 		
-		up.normalize();
-		forward.normalize();
+		up.normalized();
+		forward.normalized();
 	}
 	
 	boolean mouseLocked = false;
@@ -117,26 +117,26 @@ public class Camera
 	
 	public void rotateY( float angle )
 	{
-		Vector3f Haxis = yAxis.cross( forward ).normalize();
+		Vector3f Haxis = yAxis.cross( forward ).normalized();
 		
-		forward.rotate( angle, yAxis ).normalize();
+		forward.rotate( angle, yAxis ).normalized();
 		
-		up = forward.cross(Haxis).normalize();
+		up = forward.cross(Haxis).normalized();
 	}
 	
 	public void rotateX( float angle )
 	{
-		Vector3f Haxis = yAxis.cross( forward ).normalize();
+		Vector3f Haxis = yAxis.cross( forward ).normalized();
 		
-		forward.rotate( angle, Haxis ).normalize();
+		forward.rotate( angle, Haxis ).normalized();
 		
-		up = forward.cross(Haxis).normalize();
+		up = forward.cross(Haxis).normalized();
 	}
 	
 	public Vector3f getLeft()
 	{
 		Vector3f left = forward.cross( up );
-		left.normalize();
+		left.normalized();
 		
 		return left;
 	}
@@ -144,7 +144,7 @@ public class Camera
 	public Vector3f getRight()
 	{
 		Vector3f right = up.cross( forward );
-		right.normalize();
+		right.normalized();
 		
 		return right;
 	}

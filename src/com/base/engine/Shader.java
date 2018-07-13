@@ -28,6 +28,11 @@ public class Shader
 		glUseProgram( program );
 	}
 	
+	public void updateuniforms( Matrix4f worldMatrix, Matrix4f projectedMatrix, Material material )
+	{
+		
+	}
+	
 	public void addUniform( String uniform )
 	{
 		// Den här är till för att kunna skicka in variabler i glsl koden som basicVertex
