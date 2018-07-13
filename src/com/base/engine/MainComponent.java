@@ -79,9 +79,9 @@ public class MainComponent
 				}
 				
 				Time.setDelta(frameTime);
-				Input.update();
 				
 				game.input();
+				Input.update();
 				game.update();
 				
 				// När det har gått en sekund

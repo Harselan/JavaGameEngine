@@ -23,6 +23,11 @@ public class RenderUtil
 		}
 	}
 	
+	public static void setClearColor( Vector3f color )
+	{
+		glClearColor( color.getX(), color.getY(), color.getZ(), 1.0f );
+	}
+	
 	public static void initGraphics()
 	{
 		// Sätter så att skärmen rensas till en svart färg

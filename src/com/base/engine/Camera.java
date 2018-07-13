@@ -23,10 +23,27 @@ public class Camera
 		forward.normalize();
 	}
 	
+	boolean mouseLocked = false;
+	Vector2f centerPosition = new Vector2f( Window.getWidth() / 2, Window.getHeight() / 2 );
+	
 	public void input()
 	{
+		float sensitivity = 0.5f;
 		float movAmt = (float)( 10 * Time.getDelta() );
-		float rotAmt = (float)( 100 * Time.getDelta() );
+		//float rotAmt = (float)( 100 * Time.getDelta() );
+		
+		if( Input.getKey( Input.KEY_ESCAPE ) )
+		{
+			Input.setCursor( true );
+			mouseLocked = false;
+		}
+		
+		if( Input.getMouseDown( 0 ) )
+		{
+			Input.setMousePosition( centerPosition );
+			Input.setCursor( false );
+			mouseLocked = true;
+		}
 		
 		if( Input.getKey( Input.KEY_W ) )
 		{
@@ -48,7 +65,30 @@ public class Camera
 			move( getRight(), movAmt );
 		}
 		
-		if( Input.getKey( Input.KEY_UP ) )
+		if( mouseLocked )
+		{
+			Vector2f deltaPos = Input.getMousePosition().sub( centerPosition );
+			
+			boolean rotY = deltaPos.getX() != 0;
+			boolean rotX = deltaPos.getY() != 0;
+			
+			if( rotY )
+			{
+				rotateY( deltaPos.getX() * sensitivity );
+			}
+			
+			if( rotX )
+			{
+				rotateX( deltaPos.getY() * -sensitivity );
+			}
+			
+			if( rotY || rotX )
+			{
+				Input.setMousePosition( new Vector2f( Window.getWidth() / 2, Window.getHeight() / 2 ) );
+			}
+		}
+		
+		/*if( Input.getKey( Input.KEY_UP ) )
 		{
 			rotateX( rotAmt );
 		}
@@ -66,7 +106,8 @@ public class Camera
 		if( Input.getKey( Input.KEY_RIGHT ) )
 		{
 			rotateY( rotAmt );
-		}
+		}*/
+		
 	}
 	
 	public void move( Vector3f dir, float amt )
@@ -76,26 +117,20 @@ public class Camera
 	
 	public void rotateY( float angle )
 	{
-		Vector3f Haxis = yAxis.cross( forward );
-		Haxis.normalize();
+		Vector3f Haxis = yAxis.cross( forward ).normalize();
 		
-		forward.rotate( angle, yAxis );
-		forward.normalize();
+		forward.rotate( angle, yAxis ).normalize();
 		
-		up = forward.cross(Haxis);
-		up.normalize();
+		up = forward.cross(Haxis).normalize();
 	}
 	
 	public void rotateX( float angle )
 	{
-		Vector3f Haxis = yAxis.cross( forward );
-		Haxis.normalize();
+		Vector3f Haxis = yAxis.cross( forward ).normalize();
 		
-		forward.rotate( angle, Haxis );
-		forward.normalize();
+		forward.rotate( angle, Haxis ).normalize();
 		
-		up = forward.cross(Haxis);
-		up.normalize();
+		up = forward.cross(Haxis).normalize();
 	}
 	
 	public Vector3f getLeft()
