@@ -9,38 +9,38 @@ public class Material
 	
 	public Material( Texture texture )
 	{
-		this( texture, new Vector3f( 1, 1, 1 ) );
+		this( texture, new Vector3f(1,1,1) );
 	}
 	
 	public Material( Texture texture, Vector3f color )
 	{
-		this( texture, color, 2, 32 );
+		this(texture, color, 2, 32);
 	}
 	
 	public Material( Texture texture, Vector3f color, float specularIntensity, float specularPower )
 	{
-		this.texture           = texture;
-		this.color             = color;
+		this.texture = texture;
+		this.color = color;
 		this.specularIntensity = specularIntensity;
-		this.specularPower     = specularPower;
+		this.specularPower = specularPower;
 	}
 
-	public Texture getTexture() 
+	public Texture getTexture()
 	{
 		return texture;
 	}
 
-	public void setTexture( Texture texture ) 
+	public void setTexture( Texture texture )
 	{
 		this.texture = texture;
 	}
 
-	public Vector3f getColor() 
+	public Vector3f getColor()
 	{
 		return color;
 	}
 
-	public void setColor( Vector3f color ) 
+	public void setColor( Vector3f color )
 	{
 		this.color = color;
 	}
@@ -55,12 +55,12 @@ public class Material
 		this.specularIntensity = specularIntensity;
 	}
 
-	public float getSpecularPower() 
+	public float getSpecularPower()
 	{
 		return specularPower;
 	}
 
-	public void setSpecularPower( float specularPower ) 
+	public void setSpecularPower( float specularPower )
 	{
 		this.specularPower = specularPower;
 	}

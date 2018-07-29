@@ -11,12 +11,8 @@ void main()
 {
     vec4 textureColor = texture( sampler, texCoord0.xy );
 
-    if( textureColor == vec4( 0, 0, 0, 0 ) )
-    {
+    if( textureColor == vec4( 0,0,0,0 ) )
         fragColor = vec4( color, 1 );
-    }
     else
-    {
         fragColor = textureColor * vec4( color, 1 );
-    }
 }
