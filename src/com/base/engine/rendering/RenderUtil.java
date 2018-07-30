@@ -1,64 +1,52 @@
 package com.base.engine.rendering;
 
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL30.*;
-import static org.lwjgl.opengl.GL32.GL_DEPTH_CLAMP;
-
 import com.base.engine.core.Vector3f;
 
-public class RenderUtil 
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL32.GL_DEPTH_CLAMP;
+
+public class RenderUtil
 {
 	public static void clearScreen()
 	{
 		//TODO: Stencil Buffer
-		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
-	
-	public static void setTextures( boolean enabled )
+
+	public static void setTextures(boolean enabled)
 	{
-		if( enabled )
-		{
-			glEnable( GL_TEXTURE_2D );
-		}
+		if(enabled)
+			glEnable(GL_TEXTURE_2D);
 		else
-		{
-			glDisable( GL_TEXTURE_2D );
-		}
+			glDisable(GL_TEXTURE_2D);
 	}
 	
 	public static void unbindTextures()
 	{
-		glBindTexture( GL_TEXTURE_2D, 0 );
+		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 	
-	public static void setClearColor( Vector3f color )
+	public static void setClearColor(Vector3f color)
 	{
-		glClearColor( color.getX(), color.getY(), color.getZ(), 1.0f );
+		glClearColor(color.getX(), color.getY(), color.getZ(), 1.0f);
 	}
 	
 	public static void initGraphics()
 	{
-		// Sätter så att skärmen rensas till en svart färg
-		glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
+		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		
-		// Säger att den främre delen bestäms av GL_CW vilket då är i klockans håll
-		glFrontFace( GL_CW );
-		// Gör så att den bakre renderingen inte skapas för den visas inte för kameran
-		glCullFace( GL_BACK );
-		glEnable( GL_CULL_FACE );
-		// Får programmet att hålla koll på hur långt alla renderingar är från kameran 
-		glEnable( GL_DEPTH_TEST );
+		glFrontFace(GL_CW);
+		glCullFace(GL_BACK);
+		glEnable(GL_CULL_FACE);
+		glEnable(GL_DEPTH_TEST);
 		
-		//TODO: Depth clamp for later
-		glEnable( GL_DEPTH_CLAMP );
-		// Fixar så att texturer används
-		glEnable( GL_TEXTURE_2D );
-		// Fixar så att färgerna inte blir allt för mörka
-		//glEnable( GL_FRAMEBUFFER_SRGB );
+		glEnable(GL_DEPTH_CLAMP);
+		
+		glEnable(GL_TEXTURE_2D);
 	}
 	
-	public static String getOpenGlVersion()
+	public static String getOpenGLVersion()
 	{
-		return glGetString( GL_VERSION );
+		return glGetString(GL_VERSION);
 	}
 }

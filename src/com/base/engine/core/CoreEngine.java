@@ -2,7 +2,6 @@ package com.base.engine.core;
 
 import com.base.engine.rendering.RenderUtil;
 import com.base.engine.rendering.Window;
-import com.base.game.Game;
 
 public class CoreEngine 
 {	
@@ -12,43 +11,39 @@ public class CoreEngine
 	private int height;
 	private double frameTime;
 	
-	public CoreEngine( int width, int height, double framerate, Game game )
+	public CoreEngine(int width, int height, double framerate, Game game)
 	{
 		this.isRunning = false;
 		this.game = game;
 		this.width = width;
 		this.height = height;
-		this.frameTime = 1.0 / framerate;
+		this.frameTime = 1.0/framerate;
 	}
-	
+
 	private void initializeRenderingSystem()
 	{
-		System.out.println(RenderUtil.getOpenGlVersion());
+		System.out.println(RenderUtil.getOpenGLVersion());
 		RenderUtil.initGraphics();
 	}
-	
-	public void createWindow( String title )
+
+	public void createWindow(String title)
 	{
-		Window.createWindow( width, height, title );
+		Window.createWindow(width, height, title);
 		initializeRenderingSystem();
 	}
-	
+
 	public void start()
 	{
-		if( isRunning )
-		{
+		if(isRunning)
 			return;
-		}
 		
 		run();
 	}
 	
 	public void stop()
 	{
-		if( !isRunning )
-		{
+		if(!isRunning)
 			return;
-		}
 		
 		isRunning = false;
 	}
@@ -133,8 +128,12 @@ public class CoreEngine
 	private void render()
 	{
 		RenderUtil.clearScreen();
+		//long startTime = Time.getTime();
 		game.render();
+		//double millisecond = 1000 * (double)(Time.getTime() - startTime)/((double)Time.SECOND);
+		//System.out.println(millisecond + "ms (" + (int)(1.0/(millisecond / 1000)) + " fps)");
 		Window.render();
+
 	}
 	
 	private void cleanUp()

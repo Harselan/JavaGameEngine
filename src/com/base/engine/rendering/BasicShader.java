@@ -4,7 +4,7 @@ import com.base.engine.core.Matrix4f;
 
 public class BasicShader extends Shader
 {
-private static final BasicShader instance = new BasicShader();
+	private static final BasicShader instance = new BasicShader();
 	
 	public static BasicShader getInstance()
 	{
@@ -12,9 +12,7 @@ private static final BasicShader instance = new BasicShader();
 	}
 	
 	private BasicShader()
-	{
-		super();
-		
+	{	
 		addVertexShaderFromFile( "basicVertex.vs" );
 		addFragmentShaderFromFile( "basicFragment.fs" );
 		compileShader();
@@ -25,7 +23,7 @@ private static final BasicShader instance = new BasicShader();
 	
 	public void updateUniforms( Matrix4f worldMatrix, Matrix4f projectedMatrix, Material material )
 	{
-		if( material.getTexture() != null )
+		if(material.getTexture() != null)
 			material.getTexture().bind();
 		else
 			RenderUtil.unbindTextures();

@@ -1,6 +1,6 @@
-package com.base.game;
+package com.base.engine.core;
 
-public interface Game 
+public interface Game
 {
 	public void init();
 	public void input();
