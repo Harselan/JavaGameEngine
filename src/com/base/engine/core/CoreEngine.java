@@ -54,7 +54,7 @@ public class CoreEngine
 		game.init();
 		
 		// Tidpunken allting börjar
-		long lastTime = Time.getTime();
+		double lastTime = Time.getTime();
 		// Tid mellan varje renderad bild
 		double unprocessedTime = 0;
 		
@@ -62,12 +62,12 @@ public class CoreEngine
 		{
 			boolean render = false;
 			
-			long startTime = Time.getTime();
-			long passedTime = startTime - lastTime;
+			double startTime = Time.getTime();
+			double passedTime = startTime - lastTime;
 			lastTime = startTime;
 			
 			// Lägger till tiden som har gått i sekunder till unprocessedTime
-			unprocessedTime  += passedTime / (double)Time.SECOND;
+			unprocessedTime  += passedTime;
 			frameCounter += passedTime;
 			
 			// När det är dags för en ny renderad bild
@@ -81,15 +81,13 @@ public class CoreEngine
 					stop();
 				}
 				
-				Time.setDelta(frameTime);
-				
-				game.input();
-				renderingEngine.input();
+				game.input((float)frameTime);
+				renderingEngine.input( (float)frameTime );
 				Input.update();
-				game.update();
+				game.update((float)frameTime);
 				
 				// När det har gått en sekund
-				if( frameCounter >= Time.SECOND )
+				if( frameCounter >= 1.0 )
 				{
 					System.out.println(frames);
 					frames = 0;

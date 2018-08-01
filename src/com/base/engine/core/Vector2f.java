@@ -31,6 +31,16 @@ public class Vector2f
 		return this;
 	}
 	
+	public float cross( Vector2f r )
+	{
+		return x * r.getY() - y * r.getX();
+	}
+	
+	public Vector2f lerp( Vector2f dest, float lerpFactor )
+	{
+		return dest.sub( this ).mul( lerpFactor ).add( this );
+	}
+	
 	public Vector2f rotate( float angle )
 	{
 		double rad = Math.toRadians(angle);
@@ -108,5 +118,10 @@ public class Vector2f
 	public void setY( float y ) 
 	{
 		this.y = y;
+	}
+	
+	public boolean equals( Vector2f r )
+	{
+		return x == r.getX() && y == r.getY();
 	}
 }
