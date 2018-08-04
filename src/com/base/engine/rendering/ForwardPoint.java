@@ -1,5 +1,6 @@
 package com.base.engine.rendering;
 
+import com.base.engine.components.PointLight;
 import com.base.engine.core.Matrix4f;
 import com.base.engine.core.Transform;
 
@@ -52,7 +53,7 @@ private static final ForwardPoint instance = new ForwardPoint();
 		setUniformf( "specularPower", material.getSpecularPower() );
 		
 		setUniform( "eyePos", getRenderingEngine().getMainCamera().getPos() );
-		setUniform( "pointLight", getRenderingEngine().getPointLight() );	
+		setUniform( "pointLight", getRenderingEngine().getActivePointLight() );	
 	}
 	
 	public void setUniform( String uniformName, BaseLight baseLight )

@@ -1,8 +1,11 @@
-package com.base.engine.rendering;
+package com.base.engine.components;
 
+import com.base.engine.core.RenderingEngine;
 import com.base.engine.core.Vector3f;
+import com.base.engine.rendering.Attenuation;
+import com.base.engine.rendering.BaseLight;
 
-public class PointLight 
+public class PointLight extends GameComponent
 {
 	private BaseLight baseLight;
 	private Attenuation atten;
@@ -15,6 +18,12 @@ public class PointLight
 		this.atten     = atten;
 		this.position  = position;
 		this.range     = range;
+	}
+	
+	@Override
+	public void addToRenderingEngine( RenderingEngine renderingEngine )
+	{
+		renderingEngine.addPointLight( this );
 	}
 	
 	public BaseLight getBaseLight() 

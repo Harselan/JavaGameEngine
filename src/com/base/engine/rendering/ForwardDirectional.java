@@ -1,5 +1,6 @@
 package com.base.engine.rendering;
 
+import com.base.engine.components.DirectionalLight;
 import com.base.engine.core.Matrix4f;
 import com.base.engine.core.Transform;
 
@@ -48,7 +49,7 @@ private static final ForwardDirectional instance = new ForwardDirectional();
 		setUniformf( "specularPower", material.getSpecularPower() );
 		
 		setUniform( "eyePos", getRenderingEngine().getMainCamera().getPos() );
-		setUniform( "directionalLight", getRenderingEngine().getDirectionalLight() );
+		setUniform( "directionalLight", getRenderingEngine().getActiveDirectionalLight() );
 	}
 	
 	public void setUniform( String uniformName, BaseLight baseLight )
