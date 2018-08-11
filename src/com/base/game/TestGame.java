@@ -1,5 +1,6 @@
 package com.base.game;
 
+import com.base.engine.components.Camera;
 import com.base.engine.components.DirectionalLight;
 import com.base.engine.components.MeshRenderer;
 import com.base.engine.components.PointLight;
@@ -53,5 +54,7 @@ public class TestGame extends Game
 		getRootObject().addChild( directionalLightObject );
 		getRootObject().addChild( pointLightObject );
 		getRootObject().addChild( spotLightObject );
+		
+		getRootObject().addChild( new GameObject().addComponent( new Camera( (float)Math.toRadians( 70.0f ), (float)Window.getWidth() / (float)Window.getHeight(), 0.01f, 100.0f  ) ) );
 	}
 }

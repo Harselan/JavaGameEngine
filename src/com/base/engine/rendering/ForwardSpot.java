@@ -56,7 +56,7 @@ private static final ForwardSpot instance = new ForwardSpot();
 		setUniformf( "specularIntensity", material.getSpecularIntensity() );
 		setUniformf( "specularPower", material.getSpecularPower() );
 		
-		setUniform( "eyePos", getRenderingEngine().getMainCamera().getPos() );
+		setUniform( "eyePos", getRenderingEngine().getMainCamera().getTransform().getPos() );
 		setUniformSpotLight( "spotLight", (SpotLight)getRenderingEngine().getActiveLight() );	
 	}
 	

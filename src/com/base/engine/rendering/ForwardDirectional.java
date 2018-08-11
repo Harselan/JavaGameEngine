@@ -49,7 +49,7 @@ private static final ForwardDirectional instance = new ForwardDirectional();
 		setUniformf( "specularIntensity", material.getSpecularIntensity() );
 		setUniformf( "specularPower", material.getSpecularPower() );
 		
-		setUniform( "eyePos", getRenderingEngine().getMainCamera().getPos() );
+		setUniform( "eyePos", getRenderingEngine().getMainCamera().getTransform().getPos() );
 		setUniformDirectionalLight( "directionalLight", (DirectionalLight)getRenderingEngine().getActiveLight() );
 	}
 	

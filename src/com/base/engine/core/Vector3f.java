@@ -89,9 +89,19 @@ public class Vector3f
 		return new Vector3f( Math.abs(x), Math.abs(y), Math.abs(z) );
 	}
 	
-	public Vector3f rotate( float angle, Vector3f axis )
+	public Vector3f rotate( Vector3f axis, float angle )
 	{
-		Quaternion rotation = new Quaternion().initRotation( axis, angle );
+		float sinAngle = (float)Math.sin( -angle );
+		float cosAngle = (float)Math.cos( -angle );
+		
+		return this.cross( axis.mul( sinAngle ) ).add( //Rotering på x axeln
+				(this.mul( cosAngle )).add(				//Rotering på z axeln
+						axis.mul( this.dot( axis.mul( 1 - cosAngle ) ) ) ) ); //Rotering på y axeln
+		//return this.rotate( new Quaternion().initRotation( axis, angle ) );
+	}
+	
+	public Vector3f rotate( Quaternion rotation )
+	{
 		Quaternion conjugate = rotation.conjugate();
 		
 		Quaternion w = rotation.mul( this ).mul( conjugate );

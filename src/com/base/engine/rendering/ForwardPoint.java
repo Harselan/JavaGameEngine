@@ -53,7 +53,7 @@ private static final ForwardPoint instance = new ForwardPoint();
 		setUniformf( "specularIntensity", material.getSpecularIntensity() );
 		setUniformf( "specularPower", material.getSpecularPower() );
 		
-		setUniform( "eyePos", getRenderingEngine().getMainCamera().getPos() );
+		setUniform( "eyePos", getRenderingEngine().getMainCamera().getTransform().getPos() );
 		setUniformPointLight( "pointLight", (PointLight)getRenderingEngine().getActiveLight() );	
 	}
 	
