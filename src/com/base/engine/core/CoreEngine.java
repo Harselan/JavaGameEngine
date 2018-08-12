@@ -98,7 +98,7 @@ public class CoreEngine
 			// Kollar om en ny bild behöver renderas in
 			if( render )
 			{
-				renderingEngine.render( game.getRootObject() );
+				game.render( renderingEngine );
 				Window.render();
 				frames++;
 			}

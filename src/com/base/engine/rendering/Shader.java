@@ -14,7 +14,6 @@ import java.util.HashMap;
 
 public class Shader
 {
-	private RenderingEngine renderingEngine;
 	private int program;
 	private HashMap<String, Integer> uniforms;
 	
@@ -35,7 +34,7 @@ public class Shader
 		glUseProgram(program);
 	}
 	
-	public void updateUniforms(Transform transform, Material material)
+	public void updateUniforms(Transform transform, Material material, RenderingEngine renderingEngine)
 	{
 		
 	}
@@ -175,15 +174,5 @@ public class Shader
 	public void setUniform(String uniformName, Matrix4f value)
 	{
 		glUniformMatrix4(uniforms.get(uniformName), true, Util.createFlippedBuffer(value));
-	}
-	
-	public void setRenderingEngine( RenderingEngine renderingEngine )
-	{
-		this.renderingEngine = renderingEngine;
-	}
-	
-	public RenderingEngine getRenderingEngine()
-	{
-		return this.renderingEngine;
 	}
 }
