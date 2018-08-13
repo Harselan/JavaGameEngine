@@ -5,34 +5,25 @@ import com.base.engine.core.Transform;
 
 public class ForwardAmbient extends Shader
 {
-private static final ForwardAmbient instance = new ForwardAmbient();
-	
+	private static final ForwardAmbient instance = new ForwardAmbient();
+
 	public static ForwardAmbient getInstance()
 	{
 		return instance;
 	}
-	
+
 	private ForwardAmbient()
-	{	
-		addVertexShaderFromFile( "forwardAmbient.vs" );
-		addFragmentShaderFromFile( "forwardAmbient.fs" );
-		
-		setAttribLocation( "position", 0 );
-		setAttribLocation( "texCoord", 1 );
-		
-		compileShader();
-		
-		addUniform( "MVP" );
-		addUniform( "ambientIntensity" );
+	{
+		super("forward-ambient");
 	}
-	
-	public void updateUniforms( Transform transform, Material material, RenderingEngine renderingEngine )
+
+	public void updateUniforms(Transform transform, Material material, RenderingEngine renderingEngine)
 	{
 		Matrix4f worldMatrix = transform.getTransformation();
 		Matrix4f projectedMatrix = renderingEngine.getMainCamera().getViewProjection().mul(worldMatrix);
 		material.getTexture("diffuse").bind();
-		
-		setUniform( "MVP", projectedMatrix );
-		setUniform( "ambientIntensity", renderingEngine.getAmbientLight() );
+
+		setUniform("MVP", projectedMatrix);
+		setUniform("ambientIntensity", renderingEngine.getAmbientLight());
 	}
 }
