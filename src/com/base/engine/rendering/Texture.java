@@ -1,6 +1,7 @@
 package com.base.engine.rendering;
 
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.*;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,9 +22,16 @@ public class Texture
 		this.id = id;
 	}
 	
+	public void bind( int samplerSlot )
+	{
+		assert( samplerSlot >= 0 && samplerSlot <= 31 );
+		glActiveTexture(  GL_TEXTURE0 + samplerSlot );
+		glBindTexture( GL_TEXTURE_2D, id );
+	}
+	
 	public void bind()
 	{
-		glBindTexture( GL_TEXTURE_2D, id );
+		bind(0);
 	}
 	
 	public int getID()
