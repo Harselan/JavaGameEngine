@@ -5,39 +5,36 @@ import com.base.engine.rendering.RenderingEngine;
 public abstract class Game
 {
 	private GameObject root;
-	
-	
-	
-	public void init() 
+
+	public void init() {}
+
+	public void input(float delta)
 	{
-		
+		getRootObject().inputAll(delta);
 	}
-	
-	public void input( float delta ) 
+
+	public void update(float delta)
 	{
-		getRootObject().input( delta );
+		getRootObject().updateAll(delta);
 	}
-	
-	public void update( float delta ) 
+
+	public void render(RenderingEngine renderingEngine)
 	{
-		getRootObject().update( delta );
+		renderingEngine.render(getRootObject());
 	}
-	
-	public void render( RenderingEngine renderingEngine )
+
+	public void addObject(GameObject object)
 	{
-		renderingEngine.render( getRootObject() );
+		getRootObject().addChild(object);
 	}
-	
-	public void addObject( GameObject object )
-	{
-		getRootObject().addChild( object );
-	}
-	
+
 	private GameObject getRootObject()
 	{
-		if( root == null )
+		if(root == null)
 			root = new GameObject();
-			
-		return this.root;
+
+		return root;
 	}
+
+	public void setEngine(CoreEngine engine) { getRootObject().setEngine(engine); }
 }
